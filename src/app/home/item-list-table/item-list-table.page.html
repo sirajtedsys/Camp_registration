@@ -1,0 +1,47 @@
+<div class="dropdown-container">
+  <div class="dropdown">
+    <!-- Search Box with Close Button -->
+    <div class="search-bar-container">
+      <div class="search-wrapper">
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (input)="filterDropdown()"
+          placeholder="Search..."
+          class="dropdown-search"
+        />
+        <button class="clear-btn" *ngIf="searchQuery" (click)="clearSearch()">
+          <i class="fa fa-close"></i>
+        </button>
+      </div>
+      <!-- Dropdown Close Button -->
+      <button class="btn btn-close" title="close" (click)="closeDropdown()">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Data Table -->
+    <table>
+      <thead class="tableheader">
+        <tr>
+          <th>Name</th>
+          <th *ngIf="Field2!=''">Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredData" (click)="selectItem(item)">
+          <td>{{ item[Field1] }}</td>
+          <td *ngIf="Field2 !== ''">{{ item[Field2] }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Empty State Section -->
+    <div class="empty-state" *ngIf="filteredData.length === 0">
+      <div class="text-center">
+        <h5>No results found</h5>
+        <!-- <button class="btn btn-add" (click)="OpenItemPage()">Add Item</button> -->
+      </div>
+    </div>
+  </div>
+</div>

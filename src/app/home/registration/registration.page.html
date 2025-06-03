@@ -1,0 +1,262 @@
+<body style="overflow: auto;">
+  <div class="row mx-2">
+    <div class="col-6" >
+      <div class="profile-name patient-titile text-center w-100">
+        <h2 class="text-center">Registration</h2>
+      
+      </div>
+    </div>
+    <div class="col-6 mt-2">
+      <button (click)="formvalidation()" class="btn btn-outline-success active w-50">Submit</button>
+      
+      <button style="margin-left: 1px;width: 48%;" (click)="Clear()" class="btn btn-outline-danger  active ">Clear</button>
+    </div>
+   
+  </div>
+
+
+<div class="form-container mt-3 " style="overflow: auto;" *ngIf="viewtype=='form'">
+  <div class="row mx-2 ">
+    <div class="col-6 col-md-4 col-lg-4">
+      <div class="form-group">
+        <label for="Salutation" > Salutation</label>
+        <select name="Salutaion" class="form-select" id="Salutaion" [(ngModel)]="pr.SaltId" (change)="SalutationClick($event)">
+          <option value="">Select Salutation</option>
+          <option [value]="items.SalutationId" *ngFor="let items of Salutationlist">{{items.Salutation}}</option>
+        </select>
+        <!-- <input type="text" class="form-control" (click)="showSalutationDropdown($event)" name="Salutation" id="Salutation">
+        <app-item-list-table
+        *ngIf="isVendorDropdownVisible"
+        [dropdownData]="Salutationlist"
+        [top]="dropdownPosition.top"
+        [left]="dropdownPosition.left"     
+        [Field1]="'Salutation'"   
+        (itemSelected)="onSalutationSelected($event)"
+        (WindowClosed)="OnSalutationdropClose($event)"
+        class="dropdown-overlay"
+      ></app-item-list-table> -->
+      </div>
+    </div>
+
+
+
+    <div class="col-6 col-md-4 col-lg-4" style="display: none;">
+      <div class="form-group">
+        <label for="PayType"> PayType<span class="text-danger h5">*</span></label>
+        <select disabled name="PayType" class="form-select" id="PayType" [(ngModel)]="pr.PatiPayType">
+          <option value="">Select PayType</option>
+          <option value="C">Cash</option>
+          <option value="R">Credit</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-4">
+      <div class="form-group">
+        <label for="ID">ID #</label>
+        <input type="text" class="form-control"[(ngModel)]="pr.IdCardNo" name="ID" id="ID" placeholder="ID">
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="firstname">Name<span class="text-danger h5">*</span></label>
+        <input type="text" class="form-control"[(ngModel)]="pr.PatiFirstName" name="firstname" id="firstname" placeholder="Name">
+      </div>
+    </div>
+
+
+    <div class="col-6 col-md-4 col-lg-4" style="display: none;">
+      <div class="form-group">
+        <label for="ptype"> Patient Type<span class="text-danger h5">*</span></label>
+        <select name="ptype" class="form-select" id="ptype"[(ngModel)]="pr.PatiTypeId">
+          <option value="">Select Patient Type</option>
+          <option [value]="item.PtypId" *ngFor="let item of PatientTypeList">{{item.PatientType}}</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="col-6 col-md-4 col-lg-4" style="display: none;">
+      <div class="form-group">
+        <label for="Nationality"> Nationality<span class="text-danger h5">*</span></label>
+        <select name="Nationality" class="form-select" id="Nationality"[(ngModel)]="pr.PatiPlaceId">
+          <option value="">Select Nationality</option>
+          <option [value]="items.Id" *ngFor="let items of NationalityList">{{items.Nationality}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="P_LOCATION_ID"> Location<span class="text-danger h5" *ngIf="LocationMandatory=='Y'">*</span></label>
+        <!-- <select name="P_LOCATION_ID" class="form-select" id="P_LOCATION_ID"[(ngModel)]="pr.P_LOCATION_ID">
+          <option value="">Select Location</option>
+          <option [value]="items.TrdId" *ngFor="let items of LocationList">{{items.Place}}</option>
+        </select> -->
+             <input type="text" class="form-control" [value]="selectedLOcationName==''?'Select Location':selectedLOcationName" (click)="showLocationDropdown($event)" name="P_LOCATION_ID" id="P_LOCATION_ID" placeholder="Select Location">
+        <app-item-list-table
+        *ngIf="isLocationDropdownVisible"
+        [dropdownData]="LocationList"
+        [top]="dropdownPosition.top"
+        [left]="dropdownPosition.left"     
+        [Field1]="'Place'"   
+        (itemSelected)="onLocationSelected($event)"
+        (WindowClosed)="OnLOcationdropClose($event)"
+        class="dropdown-overlay"
+      ></app-item-list-table>
+      </div>
+    </div>
+  
+
+    <div class="col-12 col-md-4 col-lg-4" >
+      <div class="form-group">
+        <label for="ptype"> Customer</label>
+        <select name="ptype" class="form-select" id="ptype"[(ngModel)]="pr.PCustId">
+          <option value="">Select Customer</option>
+          <option [value]="item.CustomerId" *ngFor="let item of CustomerList">{{item.CustomerName}}</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="Mobile">Mobile<span class="text-danger h5">*</span></label>
+        <input type="number" class="form-control"[(ngModel)]="pr.PatiMobile" name="Mobile" id="Mobile" placeholder="Mobile">
+      </div>
+    </div>
+
+ 
+
+    <div class="col-6 col-md-4 col-lg-4">
+      <div class="form-group">
+        <label for="Gender"> Gender<span class="text-danger h5">*</span></label>
+        <select name="Gender" class="form-select" id="Gender"[(ngModel)]="pr.PatiGender">
+          <option value="">Select Gender</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-4">
+      <div class="form-group">
+        <label for="DOB"> DOB<span class="text-danger h5">*</span></label>
+        <input type="date" name="DOB" id="DOB" [(ngModel)]="pr.PatiBirthDate" (input)="AddDob($event)" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-md-12">   
+  
+      <div class="row">
+        <div class="col-4 col-md-4 mb-3">
+          <div class="form-group">
+            <label for="years" class="form-label">Years</label>
+            <input type="number" class="form-control"[(ngModel)]="Years" name="years" (input)="calculateDOB()" id="years">
+          </div>
+        </div>
+        <div class="col-4 col-md-4 mb-3">
+          <div class="form-group">
+            <label for="months" class="form-label">Months</label>
+            <input type="number" class="form-control"[(ngModel)]="Month" (input)="calculateDOB()"name="months" id="months">
+          </div>
+        </div>
+        <div class=" col-4 col-md-4 mb-3">
+          <div class="form-group">
+            <label for="Day" class="form-label">Days</label>
+            <input type="number" class="form-control"[(ngModel)]="Days"(input)="calculateDOB()" name="Day" id="Day">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="PatiPresentAdd1">Permanent Address</label>
+        <textarea  class="form-control"[(ngModel)]="pr.PatiPermanentAdd1" name="PatiPresentAdd1" id="PatiPresentAdd1" placeholder="Address"> </textarea>
+      </div>
+    </div>
+    
+   
+  </div>
+
+  <div class="row mx-2 mt-2">
+    <div class="col-6">
+    <button (click)="formvalidation()" class="btn btn-outline-success active w-100">Submit</button>
+  </div>
+  <div class="col-6">
+    <button (click)="Clear()" class="btn btn-outline-danger active w-100">Clear</button>
+  </div>
+  </div>
+</div>
+
+<div class="form-container mt-3" *ngIf="viewtype=='table'">
+  <div class="row mx-2">
+    <div class="col-10 text-center">
+      <h6>Patient Details</h6>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-outline-danger btn-sm rounded-circle" (click)="viewtype='form'"> <i class="fa fa-close"></i> </button>
+    </div>
+  </div>
+
+  <div class="patient-list-container">
+    <div class="patient-card" *ngFor="let patient of ExiastingPatientData">
+      <div class="patient-card-header">
+        <div class="patient-info">
+          <h3>{{ patient.FirstName }} {{ patient.LastName }}</h3>
+          <p>{{ patient.Gender }} | {{ patient.BirthDate | date:'shortDate' }}</p>
+        </div>
+        <!-- <div class="patient-actions">
+          <button class="btn btn-primary" >View</button>
+          <button class="btn btn-secondary" >Edit</button>
+        </div> -->
+      </div>
+      <!-- PatientId": "UCHM00000003921",
+        "PatientOpNo": "24-000003920",
+        "SalutationId": "PVSM000016",
+        "FirstName": "asads",
+        "PatientTypeId": "UCHM000002",
+        "BirthDate": "1999-05-21T00:00:00",
+        "Gender": "M",
+        "Mobile": "9747206469",
+        "PlaceId": "UCHM000001",
+        "CreatedBy": "UCHM000001",
+        "CreatedDate": "2024-12-05T13:54:16",
+        "ActiveYear": "2024",
+        "BranchCode": "UCHM",
+        "PaymentType": "C",
+        "CPRId": "",
+        "IdCardId": "",
+        "IdCardNo": "5864",
+        "FinancialYearIdM": "UCHM000002",
+        "PCustomerId": "UCHM000016",
+        "PresentAddress": "",
+        "PermanentAddress": "ass",
+        "CampPatient": "Y",
+        "BranchId": "1010000001",
+        "CampVisitDone": "N" -->
+      <div class="patient-card-body">
+        <ul>
+          <li><strong>Patient ID:</strong> {{ patient.PatientId }}</li>
+          <li><strong>OP No:</strong> {{ patient.PatientOpNo }}</li>
+          <li><strong>Mobile:</strong> {{ patient.Mobile }}</li>
+          <li><strong>Salutation:</strong> {{ patient.SalutationId }}</li>
+          <li><strong>Payment Type:</strong> {{ patient.PaymentType }}</li>
+          <li><strong>Address:</strong> {{ patient.PresentAddress }}</li>
+          <li><strong>Branch:</strong> {{ patient.BranchId }}</li>
+          <li><strong>Camp Patient:</strong> {{ patient.CampPatient=='Y'?"Yes":patient.CampPatient=='N'?"No":patient.CampPatient }}</li>
+          <li><strong>Camp Visit Done:</strong> {{ patient.CampVisitDone=='Y'?"Yes":patient.CampVisitDone=='N'?"No":patient.CampVisitDone }}</li>
+        </ul>
+      </div>
+      <div class="patient-card-footer">
+        <p><strong>Created By:</strong> {{ patient.CreatedBy }} | <strong>Active Year:</strong> {{ patient.ActiveYear }}</p>
+      </div>
+    </div>
+  </div>
+  
+
+
+</div>
+
+
+</body>

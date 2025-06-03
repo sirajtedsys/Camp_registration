@@ -1,0 +1,47 @@
+<!-- <div class="over-flow-h"> -->
+  <body>
+  
+    <div class="main-container mb-5">
+      <div class="logo" >
+        <img style="height: 40px;" src="assets/images/logo.jpg">
+      </div>
+  
+      <!-- Hamburger -->
+      <nav class="menu--right" role="navigation">
+        <div class="menuToggle">
+          <input type="checkbox" />
+          <span class="burger-one"></span>
+          <span class="burger-two"></span>
+          <span class="burger-thre"></span>
+          <ul class="menuItem">
+            <div class="menu-logo">
+              <img src="assets/images/logo.jpg">
+            </div>
+            <div class="border-seperation"></div>
+            <!-- <li (click)="NavigateTo('home/registration')"><i class="fa-regular fa-calendar-check" ></i><a >Registration</a></li> -->
+            <li (click)="NavigateTo('home/registration')"><i class="fa-regular fa-calendar-check" ></i><a >Self Registration</a></li>
+            <!-- <li (click)="NavigateTo('home/discount-requests')"><i class="fa fa-tag" ></i><a >Discount Request</a></li>
+            <li (click)="NavigateTo('home/purchase-order-approval')"><i class="fa fa-tag" ></i><a >Purchase Order Approval</a></li> -->
+            <li  (click)="LogOut()"><i class="fa-solid fa-right-from-bracket"></i><a >Logout</a></li> 
+          </ul>
+        </div>
+      </nav>
+      <!-- Hamburger -->
+  
+      <!-- Appointment card -->
+  <div style="overflow: auto;">
+      <router-outlet></router-outlet>
+    </div>
+  
+    </div>
+    <footer  class="fixed-bottom">
+      <div class="f-left">
+        <h6>&#169; 2023 <a href="https://www.remedihms.com/" target="_blank">REMEDIHMS.com</a></h6>
+  
+      </div>
+      <div class="f-right">
+        <h6>Powered by<a href="https://tedsystech.com/" target="_blank">Tedsys Technologies</a></h6>
+      </div>
+    </footer>
+  </body>
+  <!-- </div> -->
